@@ -2,6 +2,12 @@
 <html lang="es">
 <head>
     <title>Repaso HTML W3School</title>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Samuel Eloy González Díaz.">
+    <meta name="description" content="Repaso de HTML">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" type="image/x-icon" href="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/1691/original/306149583_580886133837672_8720407359695224497_n.png">
 </head>
 <body style="background-color: azure;text-align: justify;">
     <div id="html-basic-elements">
@@ -35,8 +41,99 @@ doloremque ipsum atque ipsa, adipisci ut. Sit numquam laudantium enim.</pre>
     </div>
     <div id="html-text-formatting">
         <h2>Texto formateado</h2>
-        <p><b>Esto está en negrita</b> <i>Seguimos con formato itálico</i> <br>
-        <mark>Texto subrayado</mark></p>
+        <p><b>Esto está en negrita</b> <i>Seguimos con formato itálico</i> <mark>también podemos resaltar el texto</mark> <br>
+            <small>texto con formato small</small> <del>la etiqueta "del" sirve para tachar el texto</del> <ins>texto subrayado</ins> <br>
+            <sub>este texto es perfecto para un pie de imagen</sub> <sup>y este con la etiqueta sub podría ser perfecto paraoperaciones matemáticas</sup></p>
+    </div>
+    <div id="html-quotation-and-citation-elements">
+        <h2>Quotation and Citation Elements</h2>
+        <blockquote cite="https://www.proteccioncivil.es/coordinacion/snpc">
+            El Ministro del Interior ostenta la superior autoridad en materia de Protección Civil y cuenta con la Dirección General de Protección Civil 
+            y Emergencias, como órgano directivo de asistencia al titular del Departamento. <br>
+        </blockquote>
+        <p>En la constante evolución del <abbr title="Sistema Nacional de Protección Civil">SNPC</abbr>, esta Dirección General será impulsora en su <q>planificación y en la coordinación</q>
+            entre los distintos actores implicados en materia de Protección Civil, tanto de las Comunidades Autónomas y de las Ciudades de Ceuta y Melilla, 
+            como de los organismos supranacionales e internacionales.</p>
+        <address>
+            Escrito por Samuel González<br>
+            IES Puerto de la Cruz<br>
+            España
+        </address>
+        <p><cite>SNPC</cite>. Gobierno de España 2023.</p> 
+        <!--- Este es el formato adecuado para realizar comentarios dentro de nuestro código html-->
+    </div>
+    <div id="html-css">
+        <h2>Cascading Style Sheets (CSS)</h2>
+        <p style="color:purple;border: 2px solid;"> Todo contenedor en html puede adquirir arios estilos. ESte párrafo tiene un color violeta y un borde de 2 píxeles</p>
+        <p style="background-color: darkorange;font-family:'Courier New', Courier, monospace;font-style: oblique;"> También podemos cambiar el color de fondo, tipo de letra y estilo, además de muchas cosas más.</p>
+    </div>
+    <div id="html-links">
+        <h2>Links</h2>
+        <p>Los links pueden ser añadidos a imágenes, botones, títulos...</p>
+        <a href="https://www.w3schools.com/" target="_blank"><img src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/1691/original/306149583_580886133837672_8720407359695224497_n.png" style="height: 150px;width: 150px;"></a>
+    </div>
+    <div id="html-tablas">
+        <h2>Tablas</h2>
+        <table style="border: 2px solid;border-style: dashed;width: 25%;text-align: center;" rules="rows">
+            <caption>Horarios</caption>
+            <tr style="background-color: bisque;">
+                <th>Mañana</th>
+                <th>Tarde</th>
+                <th>Noche</th>
+            </tr>
+            <tr style="background-color:thistle;">
+                <td>07:00 - 14:00</td>
+                <td>14:00 - 21:00</td>
+                <td>21:00 - 07:00</td>
+            </tr>
+        </table>
+    <div id="html-lists">
+            <h2>Listas</h2>
+            <ul><ins>Lista desordenada</ins>
+                <li>Lunes</li>
+                <li>Martes</li>
+                <li>Miércoles</li>
+                <li>Jueves</li>
+                <li>Viernes</li>
+                <li>Sábado</li>
+                <li>Domingo</li>
+            </ul>
+            <ol><ins>Lista ordenada</ins>
+                <li>Lunes</li>
+                <li>Martes</li>
+                <li>Miércoles</li>
+                <li>Jueves</li>
+                <li>Viernes</li>
+                <li>Sábado</li>
+                <li>Domingo</li>
+            </ol>
+            <dl><ins>Lista descriptiva</ins>
+                <dt>Cortado</dt>
+                <dl>- Leche y café</dl>
+                <dt>Batido de plátano</dt>
+                <dl>- Leche y plátano</dl>
+            </dl>
+    </div>
+    <div id="html-iframe">
+        <h2>Iframe</h2>
+        <iframe src="https://www3.gobiernodecanarias.org/medusa/edublog/iespuertodelacruztelesforobravo/" height="500" width="500"  title="instituto"></iframe>
+    </div>
+    <div id="html-entidades-simbolos-emojis">
+        <h2>Entidades, simbolos y emojis</h2>
+        <p>&nbsp; espacio <br>
+            &lt; menor que <br>
+            &gt; mayor que <br>
+            &amp; ampersand <br> 	
+            &quot; comillas<br>	
+            &apos; comilla simple<br>	
+            &cent; 	céntimo	<br>
+            &pound; pound <br>
+            &yen; yen <br>
+            &euro; euro <br>	
+            &copy; copyright <br>	
+            &reg; marca registrada<br>
+            </p>
+            <p>&#128512;&#128151;&#128516;&#128522;&#128513;</p>
     </div>
 </body>
 </html> 
