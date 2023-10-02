@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UT1 Ejemplos</title>
+</head>
+<body>
+    <h1>Ejemplo 1: Integración del código JavaScript en HTML</h1>
+        <script src="ejemplo.js"></script>
+        <script>saySomething()</script>
+    <br>
+    
+    <h1>Ejemplo 2: Modificación del contenido de una página web</h1>
+        <p id="prueba">Modificando el contenido.</p>
+        <button type=”button” 
+        onclick="document.getElementById('prueba').innerHTML = 'CAMBIANDO el contenido!'">Click</button>
+        <button type=”button” 
+        onclick="document.getElementById('prueba').innerHTML = 'Modificando el contenido!'">Restore</button>
+        <br>
+
+    <h1>Ejemplo 3: Modificación de los atributos de objetos HTML</h1>
+        <p id="prueba">Cambio de imágenes con JavaScript.</p>
+        <img id="myFPImage" onclick="cambiaPic()"
+        src="http://myfpschool.com/wp-content/uploads/2016/06/myblack.jpeg" width="200" height="180">
+        <p>Haz click sobre la imagen para cambiarla.</p>
+        <script>
+        function cambiaPic() {
+            var image = document.getElementById('myFPImage');
+            if (image.src.match("green")) {
+            image.src ="http://myfpschool.com/wp-content/uploads/2016/06/myblack.jpeg";
+            } else if(image.src.match("black")){
+                image.src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/1200px-W3Schools_logo.svg.png"
+            } 
+            else {
+            image.src ="http://myfpschool.com/wp-content/uploads/2016/06/mygreen.jpeg";
+            }
+            }
+        </script>
+
+    <h1>Ejemplo 4:  Modificación del estilo CSS de una página</h1>
+    <p id="mytxt">Aprende JavaScript con MyFPSchool!</p>
+    <button type="button" onclick="myFunction()">¡Dale!</button>
+    <form>
+        <p id="p1">¿Estás estudiando Javascript?</p>
+        <button type="button" id="false" onclick="isTrue()">Si</button><button type="button" id="true" onclick="isFalse()">No</button><br>
+        <p id="p2">¿Cuál fue la primera civilización humana?</p>
+        <button type="button" id="false" onclick="isFalse()">Maya</button><button type="button" id="true" onclick="isTrue()">Sumeria</button><br>
+        <p id="p3">¿Qué famoso líder cubano estuvo 49 años en el poder?</p>
+        <button type="button" id="false" onclick="isFalse()">Hugo Chávez</button><button type="button" id="true" onclick="isTrue()">Fidel Castro</button><br>
+        <p id="p4">¿Dónde está el Taj Mahal?</p>
+        <button type="button" id="false" onclick="isTrue()">India</button><button type="button" id="true" onclick="isFalse()">Irán</button><br>
+        <p id="p5">¿Cuál es el mineral más duro del planeta?</p>
+        <button type="button" id="false" onclick="isTrue()">Diamante</button><button type="button" id="true" onclick="isFalse()">Oro</button><br>
+    </form>
+    <script>
+    function myFunction() {
+    var x = document.getElementById("mytxt");
+    x.style.fontSize = "25px";
+    x.style.color = "red";
+    }
+    function isFalse() {
+    var y = document.getElementById("mytxt");
+    x.style.fontSize = "25px";
+    x.style.color = "red";
+    }
+    function isTrue() {;
+    x.style.fontSize = "25px";
+    x.style.color = "red";
+    }
+
+    </script>
+
+
+</body>
+</html>
