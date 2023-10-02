@@ -43,15 +43,15 @@
     <button type="button" onclick="myFunction()">¡Dale!</button>
     <form>
         <p id="p1">¿Estás estudiando Javascript?</p>
-        <button type="button" id="false" onclick="isTrue()">Si</button><button type="button" id="true" onclick="isFalse()">No</button><br>
+        <button type="button" id="false" onclick="isTrue('p1')">Si</button><button type="button" id="true" onclick="isFalse('p1')">No</button><br>
         <p id="p2">¿Cuál fue la primera civilización humana?</p>
-        <button type="button" id="false" onclick="isFalse()">Maya</button><button type="button" id="true" onclick="isTrue()">Sumeria</button><br>
+        <button type="button" id="false" onclick="isFalse('p2')">Maya</button><button type="button" id="true" onclick="isTrue('p2')">Sumeria</button><br>
         <p id="p3">¿Qué famoso líder cubano estuvo 49 años en el poder?</p>
-        <button type="button" id="false" onclick="isFalse()">Hugo Chávez</button><button type="button" id="true" onclick="isTrue()">Fidel Castro</button><br>
+        <button type="button" id="false" onclick="isFalse('p3')">Hugo Chávez</button><button type="button" id="true" onclick="isTrue('p3')">Fidel Castro</button><br>
         <p id="p4">¿Dónde está el Taj Mahal?</p>
-        <button type="button" id="false" onclick="isTrue()">India</button><button type="button" id="true" onclick="isFalse()">Irán</button><br>
+        <button type="button" id="false" onclick="isTrue('p4')">India</button><button type="button" id="true" onclick="isFalse('p4')">Irán</button><br>
         <p id="p5">¿Cuál es el mineral más duro del planeta?</p>
-        <button type="button" id="false" onclick="isTrue()">Diamante</button><button type="button" id="true" onclick="isFalse()">Oro</button><br>
+        <button type="button" id="false" onclick="isTrue('p5')">Diamante</button><button type="button" id="true" onclick="isFalse('p5')">Oro</button><br>
     </form>
     <script>
     function myFunction() {
@@ -59,14 +59,13 @@
     x.style.fontSize = "25px";
     x.style.color = "red";
     }
-    function isFalse() {
-    var y = document.getElementById("mytxt");
-    x.style.fontSize = "25px";
-    x.style.color = "red";
+    function isTrue(pid) {
+        var pid = document.getElementById(pid);
+        pid.style.color = 'green';
     }
-    function isTrue() {;
-    x.style.fontSize = "25px";
-    x.style.color = "red";
+    function isFalse(pid) {
+        var pid = document.getElementById(pid);
+        pid.style.color = 'red';
     }
 
     </script>
