@@ -1,5 +1,5 @@
 # Actividad 1. 
-#### Observa el siguiente código:
+#### _Observa el siguiente código:_
 
   ```js
   var arr=[1,2,3,4];
