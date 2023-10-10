@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 2</title>
+</head>
+<body>
+    <h1>Cálculos circulares</h1>
+    <form>
+        <label for="radio">Radio:</label>
+        <input type="number" id="radio" name="radio" onchange="circleCalc()"><br><br>
+        <label for="area">Área:</label>
+        <input type="number" id="area" name="area"><br><br>
+        <label for="perimetro">Perímetro:</label>
+        <input type="number" id="perimetro" name="perimetro"><br><br>
+        <input type="submit" value="Calcular" onclick="circleCalc()">
+      </form>
+      <script>
+        function circleCalc() {
+            var radius = document.getElementById("radio").value
+            var area = document.getElementById("area")
+            var perimeter = document.getElementById("perimetro")
+
+            var perimeter = 2 * Math.PI * radius
+            var area = Math.PI * radius ** 2
+            console.log(perimeter, area)
+            document.getElementById("area").value = area
+            document.getElementById("perimetro").value = perimeter
+        }
+      </script> 
+</body>
+</html>

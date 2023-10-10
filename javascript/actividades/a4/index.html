@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculador de propinas</h1>
+    <hr><br>
+    <form>
+        <label for="factura">Factura: </label>
+        <input type="number" id="factura" name="factura"> <br><br>
+        <h4>Propinas disponibles</h4>
+        <label for="propina">10%: </label>
+        <input type="checkbox" id="10%" name="10%" onclick="tipCalc()"><br>
+        <label for="propina">15%: </label>
+        <input type="checkbox" id="15%" name="15%" onclick="tipCalc()"><br>
+        <label for="propina">20%: </label>
+        <input type="checkbox" id="20%" name="20%" onclick="tipCalc()">
+    </form>
+    <script>
+        function tipCalc() {
+            var bill = document.getElementById("factura").value
+            console.log(bill)
+        }
+    </script>
+</body>
+</html>
