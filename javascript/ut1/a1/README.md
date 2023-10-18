@@ -11,7 +11,7 @@
 
 1. ¿Muestran la misma información el primer y el segundo bucle? ¿Cuál es la diferencia entre los mismos?
 
-    Si, ambos códigos devuelven el mismo resultado ya que hacen exactamente lo mismo, un bucle "for" recorriendo la lista e imprimiendo cada número de la misma. Las únicas diferencias entre los dos, es que en el segundo, el valor de _arr.lenght_ es asignado a una variable llamada len y la acción que tiene que realizar _i_, tiene un primer lugar los dos sumatorios. En este caso, el orden de los factores no altera el producto.
+    Si, ambos códigos devuelven el mismo resultado ya que hacen exactamente lo mismo, un bucle "for" recorriendo la lista e imprimiendo cada número de la misma. Las únicas diferencias entre los dos, es que en el segundo, el valor de _arr.lenght_ es asignado a una variable llamada len y la acción que tiene que realizar _i_, tiene en primer lugar los dos sumatorios. En este caso, el orden de los factores no altera el producto al tratarse de una estructura iterativa.
 
 2. ¿Qué muestra el siguiente código? 
 
@@ -26,7 +26,7 @@ Este código sigue mostrando la misma información que el caso anterior.
  for (i of arr) {console.log(i);}
  ```
 
-Al igual que en el códio precedente, se sigue mostrando la misma información.
+Al igual que en el código precedente, se sigue mostrando la misma información.
 
 4. ¿Hay diferencia con el siguiente?
 
