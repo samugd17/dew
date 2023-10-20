@@ -4,19 +4,20 @@
   <title>Operaciones Matemáticas</title>
 </head>
 <body>
+  <div>
     <h1>Ejercicio 2</h1>
-    <h2>Operaciones con Desplazamiento de Bits:</h2>
+    <h2>Operaciones con desplazamiento de bits:</h2>
     <div id="operacionesBits">
         <label for="value1">Primer valor:</label>
         <input type="number" id="value1" placeholder="Ingrese su primer valor"><br>
         <label for="value2">Segundo valor:</label>
-        <input type="number" id="value2" placeholder="Ingresa su segundo valor"><br>
+        <input type="number" id="value2" placeholder="Ingrese su segundo valor"><br>
         
         <label for="operator">Operación:</label>
         <select id="operator">
           <option value=">>">Dividir / >> </option>
           <option value="<<">Multiplicar / <<</option>
-        </select><br>
+        </select><br><br>
         <button onclick="makeBitOperations()">Calcular</button>
         <p id="result"></p>
       </div>
@@ -39,5 +40,6 @@
         }
       </script>
     </script>
+  </div>
 </body>
 </html>

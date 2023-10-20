@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Simple</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Calculadora Simple: if... else if</h1>
+        <br/>
+        <!-- Entrada de valores a calcular por el usuario -->
+        <form>      
+            <label for="value1">Número 1:
+                <input type="number" style="text-align:center" id="value1" name="value1" required>
+            </label>
+            <br/><br/>
+            <label for="value2">Número 2:
+                <input type="number" style="text-align:center" id="value2" name="value2" required>
+            </label>
+            <br/><br/>
+            <!-- Botones para operaciones matemáticas -->
+                <button type="button" onclick="makeOperation('sumar')">+</button>
+                <button type="button" onclick="makeOperation('restar')">-</button>
+                <button type="button" onclick="makeOperation('multiplicar')">x</button>
+                <button type="button" onclick="makeOperation('dividir')">÷</button>
+        </form>
+    <p>Resultado: <input type="text" style="text-align:center" id="result" readonly></p>
+    </div>
+    <script>
+        // Extraemos los valores del formulario
+        function makeOperation(operation) {
+            let value1 = parseFloat(document.getElementById("value1").value);
+            let value2 = parseFloat(document.getElementById("value2").value);
+            let result;
+            // Analizamos la operación deseada para esos valores y la ejecutamos
+            if (operation == 'sumar') {
+                result = value1 + value2;
+            }
+            else if (operation == 'restar') {
+                result = value1 - value2;
+            }
+            else if (operation == 'multiplicar') {
+                result = value1 * value2;
+            }
+            else {
+                if (value2 !== 0) {
+                        result = value1 / value2;
+                    } else {
+                        result = "Error: No se puede dividir por cero";
+                    } 
+            }
+            // Mostrar el result en la caja de texto
+            document.getElementById("result").value = result;
+        }
+    </script>
+</body>
+</html>

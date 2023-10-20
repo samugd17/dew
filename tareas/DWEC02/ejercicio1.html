@@ -34,9 +34,9 @@
         var tablaSumar8 = document.getElementById('tabla8');
         var j = 1;
         while (j <= 10) {
-            var result = 8 + (j * 8);
+            var result = 8 + j;
             var listItem = document.createElement('li');
-            listItem.textContent = `8 + (${j} x 8) = ${result}`;
+            listItem.textContent = `8 + ${j} = ${result}`;
             tablaSumar8.appendChild(listItem);
             j++;
         }
