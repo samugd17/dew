@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tablas Matemáticas</title>
+</head>
+<body>
+    <h1>Ejercicio 1</h1>
+    <h2>Tabla de multiplicar del 7:</h2>
+    <ul id="tabla7"></ul>
+    <button onclick="generateMultTable()" type="button">Generar</button>
+
+    <h2>Tabla de sumar del 8:</h2>
+    <ul id="tabla8"></ul>
+    <button onclick="generateSumTable()" type="button">Generar</button>
+
+    <h2>Tabla de dividir del 9:</h2>
+    <ul id="tabla9"></ul>
+    <button onclick="generateDivTable()" type="button">Generar</button>
+
+    <script>
+        // Bucle for
+        function generateMultTable() {
+        var tablaMultiplicar7 = document.getElementById('tabla7');
+        for (var i = 1; i <= 10; i++) {
+            var result = 7 * i;
+            var listItem = document.createElement('li');
+            listItem.textContent = `7 x ${i} = ${result}`;
+            tablaMultiplicar7.appendChild(listItem);
+        }
+        }
+
+        // Bucle while
+        function generateSumTable() {
+        var tablaSumar8 = document.getElementById('tabla8');
+        var j = 1;
+        while (j <= 10) {
+            var result = 8 + (j * 8);
+            var listItem = document.createElement('li');
+            listItem.textContent = `8 + (${j} x 8) = ${result}`;
+            tablaSumar8.appendChild(listItem);
+            j++;
+        }
+        }
+
+        // Bucle do while
+        function generateDivTable() {
+        var tablaDividir9 = document.getElementById('tabla9');
+        var k = 1;
+        do {
+            var result = 9 / k;
+            var listItem = document.createElement('li');
+            listItem.textContent = `9 / ${k} = ${result}`;
+            tablaDividir9.appendChild(listItem);
+            k++;
+        } while (k <= 10);
+        }
+    </script>
+</body>
+</html>

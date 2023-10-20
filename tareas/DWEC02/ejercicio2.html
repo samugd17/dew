@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Operaciones Matemáticas</title>
+</head>
+<body>
+    <h1>Ejercicio 2</h1>
+    <h2>Operaciones con Desplazamiento de Bits:</h2>
+    <div id="operacionesBits">
+        <label for="value1">Primer valor:</label>
+        <input type="number" id="value1" placeholder="Ingrese su primer valor"><br>
+        <label for="value2">Segundo valor:</label>
+        <input type="number" id="value2" placeholder="Ingresa su segundo valor"><br>
+        
+        <label for="operator">Operación:</label>
+        <select id="operator">
+          <option value=">>">Dividir / >> </option>
+          <option value="<<">Multiplicar / <<</option>
+        </select><br>
+        <button onclick="makeBitOperations()">Calcular</button>
+        <p id="result"></p>
+      </div>
+    
+      <script>
+        function makeBitOperations() {
+          let value1 = parseInt(document.getElementById('value1').value);
+          let operator = document.getElementById('operator').value;
+          let value2 = parseInt(document.getElementById('value2').value);
+          let resultado;
+    
+          if (operator === '>>') {
+            resultado = value1 >> value2; // Desplazamiento a la derecha
+          } else if (operator === '<<') {
+            resultado = value1 << value2; // Desplazamiento a la izquierda
+          }
+    
+          let result = document.getElementById('result');
+          result.innerHTML = `${value1} ${operator} ${value2} = ${resultado}`;
+        }
+      </script>
+    </script>
+</body>
+</html>
