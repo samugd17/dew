@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="abrirVentanaEmergente()">Abrir Ventana Emergente</button>
+    <script>
+        function abrirVentanaEmergente() {
+            // Abre una ventana emergente centrada en la pantalla
+            var windowWidth = 400;
+            var windowHeight = 300;
+            var left = (window.screen.width - windowWidth) / 2;
+            var top = (window.screen.height - windowHeight) / 2;
+            var opciones = "width=" + windowWidth + ",height=" + windowHeight + ",left=" + left + ",top=" + top;
+            window.open("index1.html", "VentanaEmergente", opciones);
+        }
+    </script>
+</body>
+</html>
