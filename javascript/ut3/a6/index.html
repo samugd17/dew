@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cronómetro</title>
+    <title>Stopwatch</title>
 </head>
 <body>
     <h1>Cronómetro</h1>
-    <p id="cronometro">00:00:00</p>
-    <button id="iniciarDetener">Iniciar</button>
-    <button id="reiniciar">Reiniciar</button>
+    <p id="stopwatch">00:00:00</p>
+    <button id="startStop">Start</button>
+    <button id="reset">Reset</button>
 
     <script>
-        let intervalo;
-        let tiempo = 0;
-        let corriendo = false;
+        let interval;
+        let time = 0;
+        let running = false;
 
-        function iniciarDetenerCronometro() {
-            if (corriendo) {
-                clearInterval(intervalo);
-                document.getElementById("iniciarDetener").textContent = "Iniciar";
+        function startStopStopwatch() {
+            if (running) {
+                clearInterval(interval);
+                document.getElementById("startStop").textContent = "Start";
             } else {
-                intervalo = setInterval(function () {
-                    tiempo++;
-                    mostrarTiempo();
+                interval = setInterval(function () {
+                    time++;
+                    displayTime();
                 }, 1000);
-                document.getElementById("iniciarDetener").textContent = "Detener";
+                document.getElementById("startStop").textContent = "Stop";
             }
-            corriendo = !corriendo;
+            running = !running;
         }
 
-        function reiniciarCronometro() {
-            tiempo = 0;
-            mostrarTiempo();
-            if (corriendo) {
-                clearInterval(intervalo);
-                corriendo = false;
-                document.getElementById("iniciarDetener").textContent = "Iniciar";
+        function resetStopwatch() {
+            time = 0;
+            displayTime();
+            if (running) {
+                clearInterval(interval);
+                running = false;
+                document.getElementById("startStop").textContent = "Start";
             }
         }
 
-        function mostrarTiempo() {
-            const horas = Math.floor(tiempo / 3600);
-            const minutos = Math.floor((tiempo % 3600) / 60);
-            const segundos = tiempo % 60;
-            document.getElementById("cronometro").textContent = `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundos)}`;
+        function displayTime() {
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+            document.getElementById("stopwatch").textContent = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
         }
 
-        function formatoTiempo(tiempo) {
-            return tiempo < 10 ? `0${tiempo}` : tiempo;
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time;
         }
 
-        document.getElementById("iniciarDetener").addEventListener("click", iniciarDetenerCronometro);
-        document.getElementById("reiniciar").addEventListener("click", reiniciarCronometro);
+        document.getElementById("startStop").addEventListener("click", startStopStopwatch);
+        document.getElementById("reset").addEventListener("click", resetStopwatch);
     </script>
 </body>
 </html>
