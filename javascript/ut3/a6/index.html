@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cronómetro</title>
+</head>
+<body>
+    <h1>Cronómetro</h1>
+    <p id="cronometro">00:00:00</p>
+    <button id="iniciarDetener">Iniciar</button>
+    <button id="reiniciar">Reiniciar</button>
+
+    <script>
+        let intervalo;
+        let tiempo = 0;
+        let corriendo = false;
+
+        function iniciarDetenerCronometro() {
+            if (corriendo) {
+                clearInterval(intervalo);
+                document.getElementById("iniciarDetener").textContent = "Iniciar";
+            } else {
+                intervalo = setInterval(function () {
+                    tiempo++;
+                    mostrarTiempo();
+                }, 1000);
+                document.getElementById("iniciarDetener").textContent = "Detener";
+            }
+            corriendo = !corriendo;
+        }
+
+        function reiniciarCronometro() {
+            tiempo = 0;
+            mostrarTiempo();
+            if (corriendo) {
+                clearInterval(intervalo);
+                corriendo = false;
+                document.getElementById("iniciarDetener").textContent = "Iniciar";
+            }
+        }
+
+        function mostrarTiempo() {
+            const horas = Math.floor(tiempo / 3600);
+            const minutos = Math.floor((tiempo % 3600) / 60);
+            const segundos = tiempo % 60;
+            document.getElementById("cronometro").textContent = `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundos)}`;
+        }
+
+        function formatoTiempo(tiempo) {
+            return tiempo < 10 ? `0${tiempo}` : tiempo;
+        }
+
+        document.getElementById("iniciarDetener").addEventListener("click", iniciarDetenerCronometro);
+        document.getElementById("reiniciar").addEventListener("click", reiniciarCronometro);
+    </script>
+</body>
+</html>

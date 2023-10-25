@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cuenta Atrás</title>
+</head>
+<body>
+    <h1>Cuenta Atrás</h1>
+
+    <label for="fecha">Selecciona una fecha y hora:</label>
+    <input type="datetime-local" id="fecha" />
+    <button id="iniciar">Iniciar Cuenta Atrás</button>
+
+    <div id="cuentaAtras"></div>
+
+    <script>
+        let intervalo;
+        const cuentaAtrasElement = document.getElementById("cuentaAtras");
+
+        document.getElementById("iniciar").addEventListener("click", () => {
+            const fechaSeleccionada = new Date(document.getElementById("fecha").value).getTime();
+            const ahora = new Date().getTime();
+            const tiempoRestante = fechaSeleccionada - ahora;
+
+            if (tiempoRestante <= 0) {
+                cuentaAtrasElement.textContent = "¡El tiempo ha expirado!";
+            } else {
+                iniciarCuentaAtras(tiempoRestante);
+            }
+        });
+
+        function iniciarCuentaAtras(tiempoRestante) {
+            clearInterval(intervalo);
+
+            intervalo = setInterval(function () {
+                const segundos = Math.floor(tiempoRestante / 1000);
+                const minutos = Math.floor(segundos / 60);
+                const horas = Math.floor(minutos / 60);
+
+                const segundosRestantes = segundos % 60;
+                const minutosRestantes = minutos % 60;
+                const horasRestantes = horas % 24;
+                const dias = Math.floor(horas / 24);
+
+                cuentaAtrasElement.innerHTML = `
+                    <p>${dias} días</p>
+                    <p>${formatoTiempo(horasRestantes)}:${formatoTiempo(minutosRestantes)}:${formatoTiempo(segundosRestantes)}</p>
+                `;
+
+                tiempoRestante -= 1000;
+
+                if (tiempoRestante < 0) {
+                    clearInterval(intervalo);
+                    cuentaAtrasElement.textContent = "¡El tiempo ha expirado!";
+                }
+            }, 1000);
+        }
+
+        function formatoTiempo(tiempo) {
+            return tiempo < 10 ? `0${tiempo}` : tiempo;
+        }
+    </script>
+</body>
+</html>
