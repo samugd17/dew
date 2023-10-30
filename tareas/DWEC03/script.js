@@ -2,10 +2,10 @@ function openNewWindow() {
     var newWindow = window.open('', '', 'width=800,height=600,resizable=no');
   
     // Write content in the new window
-    newWindow.document.write('<h3>Ejemplo de Ventana Nueva</h3>');
-    newWindow.document.write('Full URL: ' + newWindow.location + '<br>');
-    newWindow.document.write('Protocol used: ' + newWindow.location.protocol + '<br>');
-    newWindow.document.write('Browser Code Name: ' + navigator.userAgent + '<br>');
+    newWindow.document.write('<h1>Ejemplo de Ventana Nueva</h1>');
+    newWindow.document.write('<b>Full URL:</b> ' + newWindow.location + '<br>');
+    newWindow.document.write('<b>Protocol used:</b> ' + newWindow.location.protocol + '<br>');
+    newWindow.document.write('<b>Browser Code Name:</b> ' + navigator.userAgent + '<br>');
   
     // Check if Java is available in the new window
     if (newWindow.navigator.javaEnabled()) {
@@ -15,6 +15,6 @@ function openNewWindow() {
     }
   
     // Open an iframe with the content of www.google.com at 800x600
-    newWindow.document.write('<iframe src="https://www.google.com" width="800" height="600"></iframe>');
+    newWindow.document.write('<iframe src="https://www.bing.com" width="800" height="600"></iframe>');
   }
   

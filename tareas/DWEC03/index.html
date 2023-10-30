@@ -8,5 +8,17 @@
 </head>
 <body>
     <button onclick="openNewWindow()">Abrir Ventana Emergente</button>
+    <h1>TAREA DWEC03</h1>
+    <form>
+        <label for="name">Nombre y apellidos:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="date">Fecha de nacimiento:</label>
+        <input type="date" name="date" id="date"><br><br>
+        <input type="button" value="Generar datos" onclick="generateData()">
+    </form>
+    <script>
+        document.write('<p>Buenos días ' + document.getElementById("name").value)
+        document.write('<p>Tu nombre tiene ' + document.getElementById("name").value.length + ' caracteres, incluidos espacios')        
+    </script>
 </body>
 </html>
