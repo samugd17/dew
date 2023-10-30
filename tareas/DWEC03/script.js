@@ -1,17 +1,20 @@
 function openNewWindow() {
-    //Abrir ventana emergente
-    var windowWidth = 400;
-    var windowHeight = 300;
-    var left = (window.screen.width - windowWidth) / 2;
-    var top = (window.screen.height - windowHeight) / 2;
-    var options = "width=" + windowWidth + ",height=" + windowHeight + ",left=" + left + ",top=" + top;
-    var subwindow = window.open("index1.html", "VentanaEmergente", options);
-    //Actualizar datos
-    var data = subwindow.document.getElementById('data');
-    var site_url = subwindow.document.createElement('li');
-    site_url.textContent = `URL completa: ${window.location}`;
-    data.appendChild(site_url);
-    // Enviar datos
-    let datoAEnviar = document.getElementsByTagName('li');
-    subwindow.window.opener.postMessage(datoAEnviar, '*');
-}
+    var newWindow = window.open('', '', 'width=800,height=600,resizable=no');
+  
+    // Write content in the new window
+    newWindow.document.write('<h3>Ejemplo de Ventana Nueva</h3>');
+    newWindow.document.write('Full URL: ' + newWindow.location + '<br>');
+    newWindow.document.write('Protocol used: ' + newWindow.location.protocol + '<br>');
+    newWindow.document.write('Browser Code Name: ' + navigator.userAgent + '<br>');
+  
+    // Check if Java is available in the new window
+    if (newWindow.navigator.javaEnabled()) {
+      newWindow.document.write('Java IS available in this window.<br>');
+    } else {
+      newWindow.document.write('Java IS NOT available in this window.<br>');
+    }
+  
+    // Open an iframe with the content of www.google.com at 800x600
+    newWindow.document.write('<iframe src="https://www.google.com" width="800" height="600"></iframe>');
+  }
+  
