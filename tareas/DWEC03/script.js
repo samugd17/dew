@@ -3,7 +3,7 @@ function openNewWindow() {
   
     // Write content in the new window
     newWindow.document.write('<h1>Ejemplo de Ventana Nueva</h1>');
-    newWindow.document.write('<b>Full URL:</b> ' + newWindow.location + '<br>');
+    newWindow.document.write('<b>Full URL:</b> ' + newWindow.location.href + '<br>');
     newWindow.document.write('<b>Protocol used:</b> ' + newWindow.location.protocol + '<br>');
     newWindow.document.write('<b>Browser Code Name:</b> ' + navigator.userAgent + '<br>');
   
