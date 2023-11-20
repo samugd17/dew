@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UT3 Actividad 7</title>
+    <style>
+        #countdown {
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.css"/><script  type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cauce_cookie.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-base.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script></head>
+<body>
+    
+    <div>
+        <label for="endDate">Introduce la fecha y hora de finalización:</label>
+        <input type="datetime-local" id="endDate">
+        <button onclick="startCountdown()">Comenzar Cuenta Atrás</button>
+    </div>
+    <br/>
+    <div id="countdown"></div>
+
+    <script>
+        function startCountdown() {
+            let fechaFin = new Date(document.getElementById('endDate').value).getTime();
+
+            if (isNaN(fechaFin)) {
+                alert('Fecha y hora no válidas. Por favor, introduce una fecha y hora válidas.');
+                return;
+            }else{
+
+            // Actualiza el contador cada segundo
+                let contador;
+                contador = setInterval(function () {
+                let ahora = new Date().getTime();
+                let tiempoRestante = fechaFin - ahora;
+
+                if (tiempoRestante <= 0) {
+                    clearInterval(contador);
+                    document.getElementById('countdown').innerHTML = '¡Cuenta atrás finalizada!';
+                } else {
+                    let dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+                    let horas = Math.floor((tiempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+                    let segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+
+                    document.getElementById('countdown').innerHTML = `${dias} días, ${horas} horas, ${minutos} minutos, ${segundos} segundos`;
+                }
+            }, 1000); // Actualizar cada segundo
+        }}
+    </script>
+</body>
+</html>

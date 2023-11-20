@@ -1,0 +1,22 @@
+h2 {
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.operation, .result {
+    border: 1px solid;
+    
+    border-color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+.operation {
+    width: 150px;
+    background-color: rgb(215, 229, 230);
+}
+
+.result {
+    width: 50px;
+    background-color: rgb(169, 218, 218);
+}

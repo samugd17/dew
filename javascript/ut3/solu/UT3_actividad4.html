@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<title>UT3 Actividad 4</title>
+<link rel="stylesheet" type="text/css" href="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.css"/><script  type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cauce_cookie.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-base.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script></head>
+
+<body>
+    <h1>Redirección y Saludo</h1>
+    <button onclick='redirect()'>Redirigir</button>
+
+    <script>
+        function redirect() {
+            let randomNumber = parseInt(Math.random()*(10+1)); // Genera un número aleatorio entero entre 0 y 10
+            if (randomNumber <= 5) {
+                window.location.assign("https://www.google.com");// Redirige a Google
+               //Otro modo de obtener el mismo resultado: window.location.href = "https://www.google.com"; 
+            } else {
+                let hour = new Date().getHours(); // Obtiene la hora actual
+                if (hour < 12) {
+                    alert("Buenos días");
+                } else {
+                    alert("Buenas tardes");
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

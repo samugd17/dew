@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contador de caracteres y última posición de palabra</title>
+<link rel="stylesheet" type="text/css" href="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.css"/><script  type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cauce_cookie.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-base.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script></head>
+<body>
+    <h1>Contador de caracteres y última posición de palabra</h1>
+
+    <form>
+        <label for="frase">Introduce una frase:</label>
+        <input type="text" id="frase" required>
+        <br>
+        <label for="palabra">Introduce una palabra:</label>
+        <input type="text" id="palabra" required>
+        <br>
+        <input type="button" value="Calcular" id="calcular" onclick="calc()">
+    </form>
+
+    <div id="resultado">
+        <p>Número total de caracteres en la frase: <span id="numCaracteres"></span></p>
+        <p>Última posición de la palabra en la frase: <span id="ultimaPosicion"></span></p>
+    </div>
+
+    <script>
+        function calc(){
+            let inputFrase = document.getElementById("frase").value;
+            let inputPalabra = document.getElementById("palabra").value;
+            document.getElementById('numCaracteres').innerHTML = inputFrase.length; //Número total de caracteres.
+            let posicion = inputFrase.lastIndexOf(inputPalabra);
+                if (posicion !== -1){ //Si el resultado es -1 indica que la palabra no existe en el String.
+                    document.getElementById('ultimaPosicion').innerHTML = posicion+1;//Le añadimos 1 para iniciar la cuenta.
+                }else{
+                    document.getElementById('ultimaPosicion').innerHTML = "Palabra no encontrada"
+                }
+        }
+    </script>
+</body>
+</html>

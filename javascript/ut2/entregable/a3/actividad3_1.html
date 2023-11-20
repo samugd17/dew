@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora Simple</h1>
+    <br/>
+    <form>
+        <label for="numero1">Número 1:
+            <input type="number" style="text-align:center" id="numero1" name="numero1" required>
+        </label>
+            <br/><br/>
+        <label for="numero2">Número 2:
+            <input type="number" style="text-align:center" id="numero2" name="numero2" required>
+        </label>
+            <br/><br/>
+        <div>
+            <button type="button" onclick="operacion('+')">+</button>
+            <button type="button" onclick="operacion('-')">-</button>
+            <button type="button" onclick="operacion('*')">&times;</button>
+            <button type="button" onclick="operacion('/')">÷</button>
+        </div>
+    </form>
+
+    <p>Resultado: <input type="text" style="text-align:center" id="resultado" readonly></p>
+
+    <script>
+        function operacion(operador) {
+            // Obtener los valores de los números ingresados
+            var numero1 = parseFloat(document.getElementById("numero1").value);
+            var numero2 = parseFloat(document.getElementById("numero2").value);
+            // Seleccionar la operación
+            if (operador == '+') { 
+                var resultado = (numero1 + numero2).toFixed(2);
+            } else if (operador == '-') { 
+                var resultado = (numero1 - numero2).toFixed(2);
+            } else if (operador == '*') { 
+                var resultado = (numero1 * numero2).toFixed(2);
+            } else { 
+                var resultado = (numero1 / numero2).toFixed(2);
+            }
+            // Mostrar el resultado en la caja de texto
+            document.getElementById("resultado").value = resultado;
+        }
+    </script>
+</body>
+</html>

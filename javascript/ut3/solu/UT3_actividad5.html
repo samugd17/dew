@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Calculadora Switch</title>
+<link rel="stylesheet" type="text/css" href="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.css"/><script  type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cauce_cookie.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-base.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script></head>
+<body>
+    <h1>Calculadora</h1>
+
+    <form>
+        <label for="numero1">Número 1:
+            <input type="number" style="text-align:center" id="numero1" name="numero1" required>
+        </label>
+        <br/>
+        <label for="numero2">Número 2:
+            <input type="number" style="text-align:center" id="numero2" name="numero2" required>
+        </label>
+         
+        <div>
+            <button type="button" onclick="operate('s')">+</button>
+            <button type="button" onclick="operate('r')">-</button>
+            <button type="button" onclick="operate('m')">&times;</button>
+            <button type="button" onclick="operate('d')">÷</button>
+            <button type="button" onclick="operate('p')">^</button>
+        </div>
+    </form>
+
+    <p>Resultado: <input type="text" style="text-align:center" id="resultado" readonly></p>
+
+    <script>
+        function operate(x){
+            let numero1 = parseFloat(document.getElementById("numero1").value);
+            let numero2 = parseFloat(document.getElementById("numero2").value);
+            let resultado;
+            
+            switch(x){
+                case 's':
+                    resultado = numero1 + numero2;
+                    break;
+                case 'r':
+                    resultado = numero1 - numero2;
+                    break;
+                case 'm':
+                    resultado = numero1 * numero2;
+                    break;
+                case 'd':
+                    resultado = numero1 / numero2;
+                    break;
+                default:
+                    resultado = Math.pow(numero1,numero2); //también numero1**numero2;
+            }
+            resultado = resultado.toFixed(2);
+            document.getElementById("resultado").value = resultado;
+        }
+    </script>
+</body>
+</html>

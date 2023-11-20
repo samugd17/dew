@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="a1.css"></link>
+    <title>Actividad 1</title>
+</head>
+<body>
+
+    <h2>Tabla de multiplicar del 7</h3>
+
+    <table class="table">
+        <tbody>
+          <tr>
+            <td class="operation">7 * 1</td>
+            <td class="result" id="s1-1"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 2</td>
+            <td class="result" id="s1-2"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 3</td>
+            <td class="result" id="s1-3"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 4</td>
+            <td class="result" id="s1-4"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 5</td>
+            <td class="result" id="s1-5"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 6</td>
+            <td class="result" id="s1-6"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 7</td>
+            <td class="result" id="s1-7"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 8</td>
+            <td class="result" id="s1-8"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 9</td>
+            <td class="result" id="s1-9"></td>
+          </tr>
+          <tr>
+            <td class="operation">7 * 10</td>
+            <td class="result" id="s1-10"></td>
+          </tr>
+        </tbody>
+        </table>
+
+    <script>
+      /* Definimos la variable del resultado 
+      y las casillas en las que lo vamos a posicionar */
+      var s1 = ["s1-1", "s1-2", "s1-3", "s1-4", "s1-5", "s1-6", "s1-7", "s1-8", "s1-9", "s1-10"];
+      var res;
+
+      /* Bucle usando la iteracón para hacer la operación 
+      y seleccionar la casilla */
+      for (let i = 1; i < 11; i++) {
+          res = 7 * i;
+          document.getElementById(s1[i - 1]).innerHTML = res
+      }
+    </script>
+
+<h2>Tabla de sumar del 8</h3>
+
+    <table class="table">
+        <tbody>
+          <tr>
+            <td class="operation">8 + 1</td>
+            <td class="result" id="s2-1"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 2</td>
+            <td class="result" id="s2-2"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 3</td>
+            <td class="result" id="s2-3"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 4</td>
+            <td class="result" id="s2-4"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 5</td>
+            <td class="result" id="s2-5"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 6</td>
+            <td class="result" id="s2-6"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 7</td>
+            <td class="result" id="s2-7"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 8</td>
+            <td class="result" id="s2-8"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 9</td>
+            <td class="result" id="s2-9"></td>
+          </tr>
+          <tr>
+            <td class="operation">8 + 10</td>
+            <td class="result" id="s2-10"></td>
+          </tr>
+        </tbody>
+        </table>
+
+    <script>
+      var s2 = ["s2-1", "s2-2", "s2-3", "s2-4", "s2-5", "s2-6", "s2-7", "s2-8", "s2-9", "s2-10"];
+      var res;
+      var i = 1
+
+      while (i < 11) {
+          res = 8 + i;
+          document.getElementById(s2[i - 1]).innerHTML = res
+          i++;
+      }
+    </script>
+
+<h2>Tabla de dividir del 9</h3>
+
+    <table class="table">
+        <tbody>
+          <tr>
+            <td class="operation">9 / 1</td>
+            <td class="result" id="s3-1"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 2</td>
+            <td class="result" id="s3-2"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 3</td>
+            <td class="result" id="s3-3"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 4</td>
+            <td class="result" id="s3-4"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 5</td>
+            <td class="result" id="s3-5"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 6</td>
+            <td class="result" id="s3-6"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 7</td>
+            <td class="result" id="s3-7"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 8</td>
+            <td class="result" id="s3-8"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 9</td>
+            <td class="result" id="s3-9"></td>
+          </tr>
+          <tr>
+            <td class="operation">9 / 10</td>
+            <td class="result" id="s3-10"></td>
+          </tr>
+        </tbody>
+        </table>
+
+    <script>
+      var s3 = ["s3-1", "s3-2", "s3-3", "s3-4", "s3-5", "s3-6", "s3-7", "s3-8", "s3-9", "s3-10"];
+      var res;
+      var i = 1
+
+      do {
+          res = 9 / i;
+          document.getElementById(s3[i - 1]).innerHTML = res
+          i++;
+      }
+      while (i < 11)
+    </script>
+</body>
+</html>
