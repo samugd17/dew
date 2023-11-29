@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Cuestionario</h1>
+    <form action="" id="cuestionario">
+        <label for="frutas">¿Cuáles de las siguientes frutas son rojas? <br>
+            <label for="manzana"><input type="checkbox" name="manzana" id="manzana">Manzana</label><br>
+            <label for="plátano"><input type="checkbox" name="plátano" id="plátano">Plátano</label><br>
+            <label for="fresa"><input type="checkbox" name="fresa" id="fresa">Fresa</label><br>
+            <label for="mango"><input type="checkbox" name="mango" id="mango">Mango</label><br>
+        </label>
+            <button id="b1" onclick="checkboxAnswer()">Comprobar</button><br><br>
+        <label for="color">¿Cuál de las siguientes opciones es un color primario? <br>
+            <label for="rojo"><input type="radio" name="rojo" id="rojo">Rojo</label><br>
+            <label for="verde"><input type="radio" name="verde" id="verde">Rojo</label><br>
+            <label for="naranja"><input type="radio" name="naranja" id="naranja">Naranja</label><br>
+            <label for="marrón"><input type="radio" name="marrón" id="marrón">Marrón</label><br>
+        </label>
+            <button id="b2">Comprobar</button><br><br>
+        <label for="weekday">Selecciona un día de la semana que comience con la letra "J".<br>
+            <select name="dia" id="dia">
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+            </select>
+        </label>
+        <button id="b3" onclick="selectAnswer()">Comprobar</button><br><br>
+        <button id="Resultado">Resultado</button>
+    </form>
+    <script src="a2.js"></script>
+</body>
+</html>

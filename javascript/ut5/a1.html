@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="principal"> Este es el contenedor principal <div id="secundario"> Este es el contenedor secundario <input id="miboton" type="button" value="OK"> </div> </div>
+    <script>
+        window.onload = function() { document.getElementById("principal").addEventListener("click", function () { alert("Pulsado el contenedor principal"); }, false); // estamos utilizando burbujeo 
+        document.getElementById("secundario").addEventListener("click", function () { alert("Pulsado el contenedor secundario"); }, false); // estamos utilizando burbujeo 
+        document.getElementById("miboton").addEventListener("click", function () { alert("Pulsado el botón"); }, false); // estamos utilizando burbujeo 
+        document.getElementById("secundario").addEventListener("click", function (e) { alert("Pulsado el contenedor secundario y paramos la propagación"); e.stopPropagation(); }, true);
+        }
+    </script>
+</body>
+</html>
