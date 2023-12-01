@@ -6,10 +6,10 @@ function checkboxAnswer() {
 
     for (let i = 0; i < form.elements.length; i++) {
         if (form.elements[i].checked) {
-            if (form.elements[i].name === "manzana") {
+            if (form.elements[i].value === "manzana") {
                 fruit_score += 0.5;
             }
-            if (form.elements[i].name === "fresa") {
+            if (form.elements[i].value === "fresa") {
                 fruit_score += 0.5;
             }
         }
@@ -23,7 +23,7 @@ function checkboxAnswer() {
 function radioAnswer() {
     for (let i = 0; i < form.elements.length; i++) {
         if (form.elements[i].checked == true) {
-            if (form.elements[i].name == rojo) {
+            if (form.elements[i].value == "rojo") {
                 var color_score = 1;
             }
             else {
@@ -31,13 +31,13 @@ function radioAnswer() {
             }
         }
     }
-    general_score += color_score           
-    return document.write(`Has sacado una puntuación de ${color_score}`);
+    general_score += color_score;           
+    document.getElementById("r2").innerHTML = `Has sacado una puntuación de ${color_score}`;
 }
 
 function selectAnswer() {
     for (let i = 0; i < form.elements.length; i++) {
-        if (form.elements[i].value == "Jueves") {
+        if (form.elements[i].value == "jueves") {
             var day_score = 1;
         }
         else {
@@ -45,5 +45,5 @@ function selectAnswer() {
         }       
     }
     general_score += day_score           
-    return document.write(`Has sacado una puntuación de ${day_score}`);
+    document.getElementById("r3").innerHTML = `Has sacado una puntuación de ${day_score}`;
 }
