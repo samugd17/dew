@@ -93,3 +93,4 @@ edificioA.agregarPlantasYPuertas(1, 2);
 edificioA.agregarPropietario("Pedro Meijide", 3, 2);
 
 edificioA.imprimePlantas();
+

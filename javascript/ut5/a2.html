@@ -1,38 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+  <meta charset="UTF-8">
+  <title>Cuestionario</title>
+  <style>
+    /* Estilos opcionales para mejorar la apariencia */
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Cuestionario</h1>
-    <form action="" id="cuestionario">
-        <label for="frutas">¿Cuáles de las siguientes frutas son rojas? <br>
-            <label for="manzana"><input type="checkbox" name="manzana" id="manzana">Manzana</label><br>
-            <label for="plátano"><input type="checkbox" name="plátano" id="plátano">Plátano</label><br>
-            <label for="fresa"><input type="checkbox" name="fresa" id="fresa">Fresa</label><br>
-            <label for="mango"><input type="checkbox" name="mango" id="mango">Mango</label><br>
-        </label>
-            <button id="b1" onclick="checkboxAnswer()">Comprobar</button><br><br>
-        <label for="color">¿Cuál de las siguientes opciones es un color primario? <br>
-            <label for="rojo"><input type="radio" name="rojo" id="rojo">Rojo</label><br>
-            <label for="verde"><input type="radio" name="verde" id="verde">Rojo</label><br>
-            <label for="naranja"><input type="radio" name="naranja" id="naranja">Naranja</label><br>
-            <label for="marrón"><input type="radio" name="marrón" id="marrón">Marrón</label><br>
-        </label>
-            <button id="b2">Comprobar</button><br><br>
-        <label for="weekday">Selecciona un día de la semana que comience con la letra "J".<br>
-            <select name="dia" id="dia">
-                <option value="Lunes">Lunes</option>
-                <option value="Martes">Martes</option>
-                <option value="Miércoles">Miércoles</option>
-                <option value="Jueves">Jueves</option>
-            </select>
-        </label>
-        <button id="b3" onclick="selectAnswer()">Comprobar</button><br><br>
-        <button id="Resultado">Resultado</button>
-    </form>
-    <script src="a2.js"></script>
+  <h1>Cuestionario</h1>
+  
+  <form id="cuestionario">
+    <fieldset>
+      <legend>Pregunta 1:</legend>
+      <label><input type="checkbox" name="frutas" value="manzana"> Manzana</label>
+      <label><input type="checkbox" name="frutas" value="platano"> Plátano</label>
+      <label><input type="checkbox" name="frutas" value="fresa"> Fresa</label>
+      <label><input type="checkbox" name="frutas" value="mango"> Mango</label>
+      <button type="button" onclick="checkboxAnswer()">Comprobar</button>
+      <p id="r1"></p>
+    </fieldset>
+    <fieldset>
+      <legend>Pregunta 2:</legend>
+      <label><input type="radio" name="color" value="rojo"> Rojo</label>
+      <label><input type="radio" name="color" value="verde"> Verde</label>
+      <label><input type="radio" name="color" value="naranja"> Naranja</label>
+      <label><input type="radio" name="color" value="marron"> Marrón</label>
+      <button type="button" onclick="">Comprobar</button>
+      <p id="r2"></p>
+    </fieldset>
+    <fieldset>
+      <legend>Pregunta 3:</legend>
+      <label>
+        <select id="diasSemana" name="diasSemana">
+          <option value="lunes">Lunes</option>
+          <option value="martes">Martes</option>
+          <option value="miercoles">Miércoles</option>
+          <option value="jueves">Jueves</option>
+        </select>
+      </label>
+      <button type="button" onclick="">Comprobar</button>
+      <p id="r3"></p>
+    </fieldset>
+
+    <button type="button" onclick="">Resultado</button>
+    <p id="rf"></p>
+  </form>
+  <script src="a2.js"></script>
 </body>
 </html>
