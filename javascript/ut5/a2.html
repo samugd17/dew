@@ -17,25 +17,29 @@
   <form id="cuestionario">
     <fieldset>
       <legend>Pregunta 1:</legend>
-      <label><input type="checkbox" name="frutas" value="manzana"> Manzana</label>
-      <label><input type="checkbox" name="frutas" value="platano"> Plátano</label>
-      <label><input type="checkbox" name="frutas" value="fresa"> Fresa</label>
-      <label><input type="checkbox" name="frutas" value="mango"> Mango</label>
+      <label> ¿Cuáles de las siguientes frutas son rojas? <br><br>
+        <input type="checkbox" name="frutas" value="manzana"> Manzana
+        <input type="checkbox" name="frutas" value="platano"> Plátano
+        <input type="checkbox" name="frutas" value="fresa"> Fresa
+        <input type="checkbox" name="frutas" value="mango"> Mango
+      </label>
       <button type="button" onclick="checkboxAnswer()">Comprobar</button>
       <p id="r1"></p>
     </fieldset>
     <fieldset>
       <legend>Pregunta 2:</legend>
-      <label><input type="radio" name="color" value="rojo"> Rojo</label>
-      <label><input type="radio" name="color" value="verde"> Verde</label>
-      <label><input type="radio" name="color" value="naranja"> Naranja</label>
-      <label><input type="radio" name="color" value="marron"> Marrón</label>
-      <button type="button" onclick="radioAnswer()">Comprobar</button>
+      <label> ¿Cuál de las siguientes opciones es un color primario? <br><br>
+        <input type="radio" name="color" value="rojo"> Rojo
+        <input type="radio" name="color" value="verde"> Verde
+        <input type="radio" name="color" value="naranja"> Naranja
+        <input type="radio" name="color" value="marron"> Marrón
+      </label>
+      <button type="button">Comprobar</button>
       <p id="r2"></p>
     </fieldset>
     <fieldset>
       <legend>Pregunta 3:</legend>
-      <label>
+      <label> Selecciona un día de la semana que comience con la letra "J". <br><br>
         <select id="diasSemana" name="diasSemana">
           <option value="lunes">Lunes</option>
           <option value="martes">Martes</option>
@@ -43,11 +47,11 @@
           <option value="jueves">Jueves</option>
         </select>
       </label>
-      <button type="button" onclick="selectAnswer()">Comprobar</button>
+      <button type="button">Comprobar</button>
       <p id="r3"></p>
     </fieldset>
-
-    <button type="button" onclick="">Resultado</button>
+    <br>
+    <button type="button" id="general-score">Resultado</button>
     <p id="rf"></p>
   </form>
   <script src="a2.js"></script>
