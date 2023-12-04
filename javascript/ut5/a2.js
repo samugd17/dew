@@ -1,4 +1,3 @@
-let general_score = 0;
 let form = document.getElementById("cuestionario");
 
 function checkboxAnswer() {
@@ -23,9 +22,8 @@ function checkboxAnswer() {
         fruit_score = 1;
     }
 
-    general_score += fruit_score;
     document.getElementById("r1").innerHTML = `Has sacado una puntuación de ${fruit_score}`;
-    finalScore(); // Actualiza la puntuación general sin mostrarla
+    return fruit_score
 }
 
 
@@ -40,23 +38,23 @@ function radioAnswer() {
             }
         }
     }
-    general_score += color_score;           
+        
     document.getElementById("r2").innerHTML = `Has sacado una puntuación de ${color_score}`;
-    finalScore();
+    return color_score
 }
 
 function selectAnswer() {
     let selectedOption = document.getElementById("diasSemana").value;
     let day_score = selectedOption === "jueves" ? 1 : 0;
 
-    general_score += day_score;
     document.getElementById("r3").innerHTML = `Has sacado una puntuación de ${day_score}`;
-    finalScore();
+    return day_score
 }
 
 
 function finalScore() {
-    document.getElementById("rf").innerHTML = `Has sacado una puntuación de ${general_score}`;
+    var final_score = checkboxAnswer() + radioAnswer() + selectAnswer()
+    document.getElementById("rf").innerHTML = `Has sacado una puntuación de ${final_score}`;
 }
 
 // Obtiene botones de comprobación de las preguntas
