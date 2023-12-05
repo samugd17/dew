@@ -1,61 +1,70 @@
 // Espera a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', function () {
 
+	// Obtiene referencias a los elementos del formulario
+	const nombre = document.getElementById('nombre');
+	const apellidos = document.getElementById('apellidos');
+	const edad = document.getElementById('edad');
+	const nif = document.getElementById('nif');
+	const email = document.getElementById('email');
+	const provincia = document.getElementById('provincia');
+	const fecha = document.getElementById('fecha');
+	const telefono = document.getElementById('telefono');
+	const hora = document.getElementById('hora');
+	const erroresContainer = document.getElementById('errores');
+	const intentosContainer = document.getElementById('intentos');
+
     // Función para convertir a mayúsculas los campos de Nombre y Apellidos
     function convertToUppercase(event) {
     	event.target.value = event.target.value.toUpperCase();
     }
-  
-    // Función para validar los campos del formulario
-    function validarFormulario(event) {
-    	event.preventDefault(); // Evita el envío automático del formulario
-  
-		// Obtiene referencias a los elementos del formulario
-		const nombre = document.getElementById('nombre');
-		const apellidos = document.getElementById('apellidos');
-		const edad = document.getElementById('edad');
-		const nif = document.getElementById('nif');
-		const email = document.getElementById('email');
-		const provincia = document.getElementById('provincia');
-		const fecha = document.getElementById('fecha');
-		const telefono = document.getElementById('telefono');
-		const hora = document.getElementById('hora');
-		const erroresContainer = document.getElementById('errores');
-		const intentosContainer = document.getElementById('intentos');
-	
-		// VALIDACIÓN DE NOMBRE Y APELLIDOS
+
+	// VALIDACIÓN DE NOMBRE Y APELLIDOS
+	function checkFullname() {
 		if (nombre.value.trim() === '' || apellidos.value.trim() === '') {
 			if (nombre.value.trim() === '') {
 				nombre.focus();
 				erroresContainer.innerHTML = 'Por favor, complete el campo: Nombre.';
-
-			} else if (apellidos.value.trim() === '') {
+				return false;
+			} 
+			
+			if (apellidos.value.trim() === '') {
 				apellidos.focus();
 				erroresContainer.innerHTML = 'Por favor, complete el campo: Apellidos.';
-
-			} 
-			return;
+				return false;
+			} else {
+				erroresContainer.innerText = ""
+				return true;
+			}
 		}
+	}
 
-		// VALIDACIÓN DE EDAD
+	// VALIDACIÓN DE EDAD
+	function checkAge() {
 		if (edad.value.trim() === '') {
 			erroresContainer.innerHTML = 'Por favor, rellene el campo: Edad';
 			edad.focus();
 			return false;
-		}
 
-		if (isNaN(edad.value)) {
+		} else if (isNaN(edad.value)) {
 			erroresContainer.innerHTML = 'Por favor, inserte un valor numérico';
 			edad.focus();
 			return false;
-
+	
 		} else if (!(edad.value > 0 && edad.value < 105)) {
 			erroresContainer.innerHTML = 'Usted sólo puede tener 105 años como máximo, deje ya este mundo. Gracias.';
 			edad.focus();
 			return false;
-		}
 
-		// VALIDACIÓN NIF
+		} else {
+			erroresContainer.innerText = ""
+			return true;
+		}
+	}
+
+
+	// VALIDACIÓN NIF
+	function checkNIF() {
 		var nif_regex = /^\d{8}-?[a-zA-Z]$/;
 		// ^ indica el comienzo del texto
 		// \d{8} indica 8 dígitos
@@ -67,11 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			nif.focus();
 			return false;
 		} else {
-			// Si el NIF es válido, borrar el mensaje de error si existe
-			erroresContainer.innerText = '';
+			erroresContainer.innerText = ""
+			return true;
 		}
+	}
 
-		// VALIDACIÓN EMAIL
+	// VALIDACIÓN EMAIL
+	function checkEmail() {
 		var email_regex = /^[^\s@]+@[a-z]+\.(com|es)$/;
 		// ^ indica el comienzo del texto
 		// [^\s@]+ indica uno o más caracteres que no sean espacios en blanco ni el símbolo "@"
@@ -84,22 +95,23 @@ document.addEventListener('DOMContentLoaded', function () {
 			email.focus();
 			return false;
 		} else {
-			// Si el NIF es válido, borrar el mensaje de error si existe
-			erroresContainer.innerText = '';
+			return true;
 		}
+	}
 
-
-		//VALIDACIÓN PROVINCIA
+	//VALIDACIÓN PROVINCIA
+	function checkProvince() {
 		if (provincia.value === "0"){
 			erroresContainer.innerText = 'Debe seleccionar una de las dos provincias';
 			provincia.focus()
 			return false;
 		} else {
-			erroresContainer.innerText = '';
+			return true;
 		}
+	}
 
-
-		//VALIDACIÓN FECHA
+	//VALIDACIÓN FECHA
+	function checkDate() {
 		var fecha_regex = /^\d{2}-\d{2}-\d{4}$/;
 		// ^ indica el comienzo del texto
 		// \d{2} indica la presencia de dos dígitos
@@ -111,25 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			fecha.focus();
 			return false;
 		} else {
-			// Si la fecha es válida, borrar el mensaje de error si existe
-			erroresContainer.innerText = '';
-		}
+			erroresContainer.innerText = ""
+			return true;
+			}
+	}
 
-		//VALIDACIÓN TELÉFONO
-		var telefono_regex = /^\d{9}$/;
-		// ^ indica el comienzo del texto
-		// \d{9} indica la presencia de 9 dígitos
-		// $ indica el final del texto
-		if (!telefono_regex.test(telefono.value)) {
-			erroresContainer.innerText = 'Debe incluir un número de teléfono con 9 dígitos';
-			telefono.focus();
-			return false;
-		} else {
-			// Si el teléfono es válido, borrar el mensaje de error si existe
-			erroresContainer.innerText = '';
-		}
-
-		//VALIDACIÓN HORA
+	//VALIDACIÓN HORA
+	function checkHour() {					
 		var hora_regex = /^\d{2}:\d{2}$/;
 		// ^ indica el comienzo del texto
 		// \d{2}:\d{2} indica la presencia de 2 dígitos separados por dos puntos
@@ -139,8 +139,36 @@ document.addEventListener('DOMContentLoaded', function () {
 			hora.focus();
 			return false;
 		} else {
-			// Si el teléfono es válido, borrar el mensaje de error si existe
-			erroresContainer.innerText = '';
+			erroresContainer.innerText = ""
+			return true;
+			}
+	}
+
+	//VALIDACIÓN TELÉFONO
+	function checkPhone() {
+		var telefono_regex = /^\d{9}$/;
+		// ^ indica el comienzo del texto
+		// \d{9} indica la presencia de 9 dígitos
+		// $ indica el final del texto
+		if (!telefono_regex.test(telefono.value)) {
+			erroresContainer.innerText = 'Debe incluir un número de teléfono con 9 dígitos';
+			telefono.focus();
+			return false;
+		} else {
+			erroresContainer.innerText = ""
+			return true;
+		}
+	}
+
+    // Función para validar los campos del formulario
+    function validarFormulario(event) {
+		// Pedir confirmación de envío
+		if (!checkFullname() || !checkAge() || !checkNIF() || !checkEmail() || !checkProvince() || !checkDate() || !checkPhone() || !checkHour()) {
+			event.preventDefault(); // Evita el envío automático del formulario
+		} else {
+			confirm('¿Estás seguro de enviar el formulario?');
+			event.target.submit();
+			return true;
 		}
 
 
@@ -153,14 +181,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 		// Mostrar el número de intentos en el contenedor correspondiente
 		intentosContainer.innerHTML = `Intento de Envíos del formulario: ${intentos}`;
-	
-		// Pedir confirmación de envío
-		const confirmacion = confirm('¿Estás seguro de enviar el formulario?');
-		if (confirmacion) {
-			event.target.submit();
-		} else {
-			return false;
-		}
     }
   
     // Obtener referencia al formulario
