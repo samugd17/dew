@@ -88,6 +88,62 @@ document.addEventListener('DOMContentLoaded', function () {
 			erroresContainer.innerText = '';
 		}
 
+
+		//VALIDACIÓN PROVINCIA
+		if (provincia.value === "0"){
+			erroresContainer.innerText = 'Debe seleccionar una de las dos provincias';
+			provincia.focus()
+			return false;
+		} else {
+			erroresContainer.innerText = '';
+		}
+
+
+		//VALIDACIÓN FECHA
+		var fecha_regex = /^\d{2}-\d{2}-\d{4}$/;
+		// ^ indica el comienzo del texto
+		// \d{2} indica la presencia de dos dígitos
+		// -\d{2} indica la presencia de dos dígitos precedidos de un guión
+		// -\d{4} indica la presencia de cuatro dígitos precedidos de un guión
+		// $ indica el final del texto
+		if (!fecha_regex.test(fecha.value)) {
+			erroresContainer.innerText = 'El formato de la fecha no es válido. Debe seguir la siguiente estructura: dd-mm-aaaa.';
+			fecha.focus();
+			return false;
+		} else {
+			// Si la fecha es válida, borrar el mensaje de error si existe
+			erroresContainer.innerText = '';
+		}
+
+		//VALIDACIÓN TELÉFONO
+		var telefono_regex = /^\d{9}$/;
+		// ^ indica el comienzo del texto
+		// \d{9} indica la presencia de 9 dígitos
+		// $ indica el final del texto
+		if (!telefono_regex.test(telefono.value)) {
+			erroresContainer.innerText = 'Debe incluir un número de teléfono con 9 dígitos';
+			telefono.focus();
+			return false;
+		} else {
+			// Si el teléfono es válido, borrar el mensaje de error si existe
+			erroresContainer.innerText = '';
+		}
+
+		//VALIDACIÓN HORA
+		var hora_regex = /^\d{2}:\d{2}$/;
+		// ^ indica el comienzo del texto
+		// \d{2}:\d{2} indica la presencia de 2 dígitos separados por dos puntos
+		// $ indica el final del texto
+		if (!hora_regex.test(hora.value)) {
+			erroresContainer.innerText = 'El formato de la hora no es válido. Debe seguir la siguiente estructura: hh:mm. ';
+			hora.focus();
+			return false;
+		} else {
+			// Si el teléfono es válido, borrar el mensaje de error si existe
+			erroresContainer.innerText = '';
+		}
+
+
 		// Incrementar el número de intentos y almacenarlo en una cookie
 		let intentos = 1;
 		if (document.cookie.includes('intentosEnvio')) {
