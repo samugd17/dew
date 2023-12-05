@@ -168,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		} else {
 			confirm('¿Estás seguro de enviar el formulario?');
 			event.target.submit();
-			return true;
 		}
 
 
