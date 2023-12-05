@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				erroresContainer.innerHTML = 'Por favor, complete el campo: Apellidos.';
 				return false;
 			} else {
-				erroresContainer.innerText = ""
 				return true;
 			}
 		}
@@ -44,12 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (edad.value.trim() === '') {
 			erroresContainer.innerHTML = 'Por favor, rellene el campo: Edad';
 			edad.focus();
-			return false;
 
 		} else if (isNaN(edad.value)) {
 			erroresContainer.innerHTML = 'Por favor, inserte un valor numérico';
 			edad.focus();
-			return false;
 	
 		} else if (!(edad.value > 0 && edad.value < 105)) {
 			erroresContainer.innerHTML = 'Usted sólo puede tener 105 años como máximo, deje ya este mundo. Gracias.';
@@ -57,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			return false;
 
 		} else {
-			erroresContainer.innerText = ""
 			return true;
 		}
 	}
@@ -76,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			nif.focus();
 			return false;
 		} else {
-			erroresContainer.innerText = ""
 			return true;
 		}
 	}
@@ -123,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			fecha.focus();
 			return false;
 		} else {
-			erroresContainer.innerText = ""
 			return true;
 			}
 	}
@@ -139,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			hora.focus();
 			return false;
 		} else {
-			erroresContainer.innerText = ""
 			return true;
 			}
 	}
@@ -155,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			telefono.focus();
 			return false;
 		} else {
-			erroresContainer.innerText = ""
 			return true;
 		}
 	}
@@ -163,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para validar los campos del formulario
     function validarFormulario(event) {
 		// Pedir confirmación de envío
-		if (!checkFullname() || !checkAge() || !checkNIF() || !checkEmail() || !checkProvince() || !checkDate() || !checkPhone() || !checkHour()) {
+		if (!checkFullname() && !checkAge() && !checkNIF() && !checkEmail() && !checkProvince() && !checkDate() && !checkPhone() || !checkHour()) {
 			event.preventDefault(); // Evita el envío automático del formulario
 		} else {
 			confirm('¿Estás seguro de enviar el formulario?');
