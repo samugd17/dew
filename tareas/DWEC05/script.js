@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para validar los campos del formulario
     function validarFormulario(event) {
 		// Pedir confirmación de envío
-		if (!checkFullname() && !checkAge() && !checkNIF() && !checkEmail() && !checkProvince() && !checkDate() && !checkPhone() || !checkHour()) {
+		if (!checkFullname() && !checkAge() && !checkNIF() && !checkEmail() && !checkProvince() && !checkDate() && !checkPhone() && !checkHour()) {
 			event.preventDefault(); // Evita el envío automático del formulario
 		} else {
 			confirm('¿Estás seguro de enviar el formulario?');
@@ -176,6 +176,17 @@ document.addEventListener('DOMContentLoaded', function () {
   
     // Obtener referencia al formulario
     const formulario = document.getElementById('formulario');
+	  // Función para obtener el valor de una cookie por su nombre
+	  function getCookie(nombre) {
+		const cookies = document.cookie.split(';');
+		for (let i = 0; i < cookies.length; i++) {
+		  const cookie = cookies[i].trim();
+		  if (cookie.startsWith(nombre + '=')) {
+			return cookie.substring(nombre.length + 1);
+		  }
+		}
+		return '';
+	  }
   
     // Agregar event listeners para los campos nombre y apellidos y envío del formulario.
     nombre.addEventListener('blur', convertToUppercase);
@@ -183,15 +194,5 @@ document.addEventListener('DOMContentLoaded', function () {
     formulario.addEventListener('submit', validarFormulario);
   });
   
-  // Función para obtener el valor de una cookie por su nombre
-  function getCookie(nombre) {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(nombre + '=')) {
-        return cookie.substring(nombre.length + 1);
-      }
-    }
-    return '';
-  }
+
   
