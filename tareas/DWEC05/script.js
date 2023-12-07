@@ -1,7 +1,9 @@
 // Espera a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', function () {
 
-	// Obtiene referencias a los elementos del formulario
+	/****VARIABLES****/
+
+	let intentos = 0;
 	const nombre = document.getElementById('nombre');
 	const apellidos = document.getElementById('apellidos');
 	const edad = document.getElementById('edad');
@@ -13,11 +15,29 @@ document.addEventListener('DOMContentLoaded', function () {
 	const hora = document.getElementById('hora');
 	const erroresContainer = document.getElementById('errores');
 	const intentosContainer = document.getElementById('intentos');
+	const formulario = document.getElementById('formulario');
 
-    // Función para convertir a mayúsculas los campos de Nombre y Apellidos
+
+	/****FUNCIONES AUXILIARES****/
+
+	// Función para obtener el valor de una cookie por su nombre
+	function getCookie(nombre) {
+		const cookies = document.cookie.split(';');
+		for (let i = 0; i < cookies.length; i++) {
+		const cookie = cookies[i].trim();
+		if (cookie.startsWith(nombre + '=')) {
+			return cookie.substring(nombre.length + 1);
+		}
+		}
+		return '';
+	} 
+
+	// Función para convertir a mayúsculas los campos de Nombre y Apellidos
     function convertToUppercase(event) {
     	event.target.value = event.target.value.toUpperCase();
     }
+	
+	/****VALIDACIONES****/
 
 	// VALIDACIÓN DE NOMBRE Y APELLIDOS
 	function checkFullname() {
@@ -25,17 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (nombre.value.trim() === '') {
 				nombre.focus();
 				erroresContainer.innerHTML = 'Por favor, complete el campo: Nombre.';
-				return false;
 			} 
 			
-			if (apellidos.value.trim() === '') {
+			else if (apellidos.value.trim() === '') {
 				apellidos.focus();
 				erroresContainer.innerHTML = 'Por favor, complete el campo: Apellidos.';
-				return false;
-			} else {
-				return true;
-			}
+			} 
+			return false;
 		}
+		return true;
 	}
 
 	// VALIDACIÓN DE EDAD
@@ -45,19 +63,18 @@ document.addEventListener('DOMContentLoaded', function () {
 			edad.focus();
 
 		} else if (isNaN(edad.value)) {
-			erroresContainer.innerHTML = 'Por favor, inserte un valor numérico';
+			erroresContainer.innerHTML = 'Por favor, inserte un valor numérico para indicar su edad';
 			edad.focus();
 	
 		} else if (!(edad.value > 0 && edad.value < 105)) {
-			erroresContainer.innerHTML = 'Usted sólo puede tener 105 años como máximo, deje ya este mundo. Gracias.';
+			erroresContainer.innerHTML = 'Los valores permitidos para la edad sólo pueden estar entre 0 y 105';
 			edad.focus();
-			return false;
 
 		} else {
 			return true;
 		}
+		return false;
 	}
-
 
 	// VALIDACIÓN NIF
 	function checkNIF() {
@@ -68,12 +85,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		// [a-zA-Z] indica una letra (mayúscula o minúscula)
 		// $ indica el final del texto
 		if (!nif_regex.test(nif.value)) {
-			erroresContainer.innerText = 'El NIF no es válido. Debe seguir el formato correcto.';
+			erroresContainer.innerText = 'El NIF no es válido. Debe indicar ocho dígitos seguidos de una letra.';
 			nif.focus();
 			return false;
-		} else {
-			return true;
-		}
+		} 
+		return true;
 	}
 
 	// VALIDACIÓN EMAIL
@@ -86,12 +102,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		// (com|es) indica las opciones disponibles a escoger. En este caso, "com" o "es"
 		// $ indica el final del texto
 		if (!email_regex.test(email.value)) {
-			erroresContainer.innerText = 'El email no es válido. Debe seguir el formato correcto.';
+			erroresContainer.innerText = 'El email no es válido. Debe seguir la siguiente estructura: ejemplo@ejemplo.(com/4es).';
 			email.focus();
 			return false;
-		} else {
-			return true;
-		}
+		} 
+		return true;
 	}
 
 	//VALIDACIÓN PROVINCIA
@@ -100,9 +115,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			erroresContainer.innerText = 'Debe seleccionar una de las dos provincias';
 			provincia.focus()
 			return false;
-		} else {
-			return true;
-		}
+		} 
+		return true;
 	}
 
 	//VALIDACIÓN FECHA
@@ -117,9 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			erroresContainer.innerText = 'El formato de la fecha no es válido. Debe seguir la siguiente estructura: dd-mm-aaaa.';
 			fecha.focus();
 			return false;
-		} else {
-			return true;
-			}
+		} 
+		return true;
 	}
 
 	//VALIDACIÓN HORA
@@ -132,9 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			erroresContainer.innerText = 'El formato de la hora no es válido. Debe seguir la siguiente estructura: hh:mm. ';
 			hora.focus();
 			return false;
-		} else {
-			return true;
-			}
+		} 
+		return true;
 	}
 
 	//VALIDACIÓN TELÉFONO
@@ -147,24 +159,18 @@ document.addEventListener('DOMContentLoaded', function () {
 			erroresContainer.innerText = 'Debe incluir un número de teléfono con 9 dígitos';
 			telefono.focus();
 			return false;
-		} else {
-			return true;
-		}
+		} 
+		return true;
 	}
+
+
+	/****VALIDACIÓN FORMULARIO****/
 
     // Función para validar los campos del formulario
     function validarFormulario(event) {
 		// Pedir confirmación de envío
-		if (!checkFullname() && !checkAge() && !checkNIF() && !checkEmail() && !checkProvince() && !checkDate() && !checkPhone() && !checkHour()) {
+		if (!checkFullname() || !checkAge() || !checkNIF() || !checkEmail() || !checkProvince() || !checkDate() || !checkPhone() || !checkHour()) {
 			event.preventDefault(); // Evita el envío automático del formulario
-		} else {
-			confirm('¿Estás seguro de enviar el formulario?');
-			event.target.submit();
-		}
-
-
-		// Incrementar el número de intentos y almacenarlo en una cookie
-		let intentos = 1;
 		if (document.cookie.includes('intentosEnvio')) {
 			intentos = parseInt(getCookie('intentosEnvio')) + 1;
 		}
@@ -172,23 +178,18 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 		// Mostrar el número de intentos en el contenedor correspondiente
 		intentosContainer.innerHTML = `Intento de Envíos del formulario: ${intentos}`;
+		} 
+
+		var confirmacion = confirm("¿Desea enviar el formulario?");
+        if (!confirmacion) {
+            event.preventDefault();  
+        }
     }
   
-    // Obtener referencia al formulario
-    const formulario = document.getElementById('formulario');
-	  // Función para obtener el valor de una cookie por su nombre
-	  function getCookie(nombre) {
-		const cookies = document.cookie.split(';');
-		for (let i = 0; i < cookies.length; i++) {
-		  const cookie = cookies[i].trim();
-		  if (cookie.startsWith(nombre + '=')) {
-			return cookie.substring(nombre.length + 1);
-		  }
-		}
-		return '';
-	  }
+
+	/****EVENT LISTENERS****/
   
-    // Agregar event listeners para los campos nombre y apellidos y envío del formulario.
+    // Event listeners para los campos nombre y apellidos y envío del formulario.
     nombre.addEventListener('blur', convertToUppercase);
     apellidos.addEventListener('blur', convertToUppercase);
     formulario.addEventListener('submit', validarFormulario);
