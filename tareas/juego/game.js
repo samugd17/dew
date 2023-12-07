@@ -84,7 +84,7 @@ function Update() {
 }
 
 function HandleKeyDown(ev){
-    if(ev.keyCode == 32){
+    if(ev.keyCode == 38){
         Saltar();
     }
 }
