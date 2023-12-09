@@ -1,36 +1,63 @@
+
 * {
     padding: 0;
     margin: 0;
 }
 
-body{
-    height: 100vh;
-    background: #584040;
-    display: flex;
-    align-items: center;
+
+body {
+    background-image: url(img/kfc-background.jpg);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-position: absolute;
+    background-color: #A60000;
 }
 
-.contenedor {
+.general-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.game-info {
+    text-align: center;
+    font-family: Verdana;
+}
+
+h1 {
+    color:#ffffff;
+    font-size: 90px;
+}
+
+p {
+    font-size: 30px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
     width: 920px;
     height: 280px;
-    margin: 0 auto;
+    margin: 20px auto;
     
     position: relative;
 
-    background: linear-gradient(#b7d6c7, transparent) #ffe2d1;/*linear-gradient(#90ebff, white);*/
-    transition: background-color 1s linear;
+    background: linear-gradient(#b7d6c7, transparent) #ffe2d1;
     overflow: hidden;
 }
 
-.mediodia {
+.midday {
     background-color: #ffdcf3;
 }
 
-.tarde {
+.afternoon {
     background-color: #ffadad;
 }
 
-.noche {
+.night {
     background-color: #aca8c7;
 }
 
@@ -53,8 +80,7 @@ body{
     background-position-x: -130px ;
 }
 
-.chicken-estrellado {
-
+.fried-chicken {
     background: url(img/fried-chicken.png) no-repeat;
     background-size: 50px 50px;
     background-position-x: 0px;
@@ -75,7 +101,7 @@ body{
 
 }
 
-.cactus{
+.obstacle-colonel{
     width: 70px;
     height: 125px;
 
@@ -88,15 +114,16 @@ body{
     transform: scaleX(-1);
     background-size: 70px 100px;
 }
-.cactus2{
+.obstacle-kfc{
     width: 140px;
     height: 105px;
 
     background: url(img/kfc.png) repeat-x;
     background-position: 0 top, 80px top;
     background-size: 70px 90px;
+    z-index: 1;
 }
-.nube{
+.cloud{
     width: 92px;
     height: 26px;
 
@@ -108,7 +135,7 @@ body{
 }
 
 .score{
-    width: 100px;
+    width: 250px;
     height: 30px;
 
     position: absolute;
@@ -116,7 +143,7 @@ body{
     right: 15px;
     z-index: 10;
 
-    color: #d48871;
+    color: #da5252;
     font-family: Verdana;
     font-size: 30px;
     font-weight: bold;
@@ -125,14 +152,19 @@ body{
 
 .game-over{
     display: none;
-
-    position: absolute;
     width: 100%;
-
+    margin-bottom: 30px;
 
     text-align: center;
-    color: #7e928b;
+    color: #da5252;
     font-size: 30px;
     font-family: Verdana;
     font-weight: 700;
+    z-index: 2;
 }
+
+/* @media only screen and (min-width: 600px) {
+    .general-container {
+        height: 90vh;
+    }
+  } */

@@ -2,9 +2,9 @@
 
 var time = new Date();
 var deltaTime = 0;
-
+// Inicia el juego una vez el DOM está cargado
 if(document.readyState === "complete" || document.readyState === "interactive"){
-    setTimeout(Init, 1);
+    setTimeout(Init, 1); // Añade un milisegundo de retardo para asegurar que el navegador termine de configurar cualquier aspecto interno antes de comenzar la ejecución de JavaScript.
 }else{
     document.addEventListener("DOMContentLoaded", Init); 
 }
@@ -15,225 +15,238 @@ function Init() {
     Loop();
 }
 
+//  Bucle principal que se encarga de actualizar y renderizar el juego en cada frame
 function Loop() {
-    deltaTime = (new Date() - time) / 1000;
+    deltaTime = (new Date() - time) / 1000; // Calcula el tiempo transcurrido entre frames en segundos
     time = new Date();
     Update();
-    requestAnimationFrame(Loop);
+    requestAnimationFrame(Loop); //  Solicita al navegador que ejecute la función Loop() en el próximo frame de animación. Esta es una forma eficiente de crear bucles de animación en JavaScript, ya que se sincroniza con el refresco de la pantalla.
 }
 
 //****** GAME LOGIC ********//
 
 var floorY = 22;
 var velY = 0;
-var impulso = 900;
-var gravedad = 2500;
+var impulse = 900;
+var gravity = 2500;
 
 var chickenPosX = 42;
 var chickenPosY = floorY; 
 
 var floorX = 0;
-var velEscenario = 1280/3;
+var velStage = 1280/3;
 var gameVel = 1;
 var score = 0;
 
-var parado = false;
-var saltando = false;
+var gameStarted = false;
+var stopped = false;
+var jumping = false;
 
-var tiempoHastaObstaculo = 2;
-var tiempoObstaculoMin = 0.7;
-var tiempoObstaculoMax = 1.8;
-var obstaculoPosY = 16;
-var obstaculos = [];
+var timeToObstacle = 2;
+var minTimeObstacle = 0.7;
+var maxTimeObstacle = 1.8;
+var obstaclePosY = 16;
+var obstacles = [];
 
-var tiempoHastaNube = 0.5;
-var tiempoNubeMin = 0.7;
-var tiempoNubeMax = 2.7;
-var maxNubeY = 270;
-var minNubeY = 100;
-var nubes = [];
-var velNube = 0.5;
+var timeToCLoud = 0.5;
+var minTimeCloud = 0.7;
+var maxTimeCloud = 2.7;
+var maxCloudY = 270;
+var minCloudY = 100;
+var clouds = [];
+var cloudVel = 0.5;
 
-var contenedor;
+var container;
 var chicken;
-var textoScore;
+var scoreText;
 var floor;
 var gameOver;
 
+// Establece las referencias a los elementos del juego
 function Start() {
     gameOver = document.querySelector(".game-over");
     floor = document.querySelector(".floor");
-    contenedor = document.querySelector(".contenedor");
-    textoScore = document.querySelector(".score");
+    container = document.querySelector(".container");
+    scoreText = document.querySelector(".score");
     chicken = document.querySelector(".chicken");
     document.addEventListener("keydown", HandleKeyDown);
 }
 
+// Controla la actualización del juego en cada frame.
 function Update() {
-    if(parado) return;
+    if(stopped) return;
     
-    Moverchickensaurio();
-    Moverfloor();
-    DecidirCrearObstaculos();
-    DecidirCrearNubes();
-    MoverObstaculos();
-    MoverNubes();
-    DetectarColision();
+    MoveChicken();
+    MoveFloor();
+    CreateObstacles();
+    CreateClouds();
+    MoveObstacles();
+    MoveClouds();
+    DetectCollision();
 
-    velY -= gravedad * deltaTime;
+    velY -= gravity * deltaTime;
 }
 
-function HandleKeyDown(ev){
-    if(ev.keyCode == 38){
-        Saltar();
+// Controla que se presione la tecla asignada (botón de dirección arriba)
+function HandleKeyDown(event){
+    if(event.keyCode == 38){
+        Jump();
     }
 }
 
-function Saltar(){
+// Controla el salto del personaje
+function Jump(){
     if(chickenPosY === floorY){
-        saltando = true;
-        velY = impulso;
+        jumping = true;
+        velY = impulse;
     }
 }
 
-function Moverchickensaurio() {
+// Controla el movimiento del personaje
+function MoveChicken() {
     chickenPosY += velY * deltaTime;
-    if(chickenPosY < floorY){
-        
-        Tocarfloor();
+    if(chickenPosY < floorY){    
+        TouchFloor();
     }
-    chicken.style.bottom = chickenPosY+"px";
+    chicken.style.bottom = chickenPosY + "px";
 }
 
-function Tocarfloor() {
+// Controla el que el personaje se pare al tocar el suelo
+function TouchFloor() {
     chickenPosY = floorY;
     velY = 0;
-    if(saltando){
+    if(jumping){
         chicken.classList.add("chicken-running");
     }
-    saltando = false;
+    jumping = false;
 }
 
-function Moverfloor() {
-    floorX += CalcularDesplazamiento();
-    floor.style.left = -(floorX % contenedor.clientWidth) + "px";
+
+// Controla el movimiento del suelo
+function MoveFloor() {
+    floorX += CalcDisplacement();
+    floor.style.left = -(floorX % container.clientWidth) + "px";
 }
 
-function CalcularDesplazamiento() {
-    return velEscenario * deltaTime * gameVel;
+// Controla la velocidad de desplazamiento
+function CalcDisplacement() {
+    return velStage * deltaTime * gameVel;
 }
 
-function Estrellarse() {
+// Controla el cambio de apariencia del personaje y su detención al estrellarse
+function Crash() {
     chicken.classList.remove("chicken-running");
-    chicken.classList.add("chicken-estrellado");
-    parado = true;
+    chicken.classList.add("fried-chicken");
+    stopped = true;
 }
 
-function DecidirCrearObstaculos() {
-    tiempoHastaObstaculo -= deltaTime;
-    if(tiempoHastaObstaculo <= 0) {
-        CrearObstaculo();
-    }
-}
-
-function DecidirCrearNubes() {
-    tiempoHastaNube -= deltaTime;
-    if(tiempoHastaNube <= 0) {
-        CrearNube();
-    }
-}
-
-function CrearObstaculo() {
-    var obstaculo = document.createElement("div");
-    contenedor.appendChild(obstaculo);
-    obstaculo.classList.add("cactus");
-    if(Math.random() > 0.5) obstaculo.classList.add("cactus2");
-    obstaculo.posX = contenedor.clientWidth;
-    obstaculo.style.left = contenedor.clientWidth+"px";
-
-    obstaculos.push(obstaculo);
-    tiempoHastaObstaculo = tiempoObstaculoMin + Math.random() * (tiempoObstaculoMax-tiempoObstaculoMin) / gameVel;
-}
-
-function CrearNube() {
-    var nube = document.createElement("div");
-    contenedor.appendChild(nube);
-    nube.classList.add("nube");
-    nube.posX = contenedor.clientWidth;
-    nube.style.left = contenedor.clientWidth+"px";
-    nube.style.bottom = minNubeY + Math.random() * (maxNubeY-minNubeY)+"px";
+// Controla la creación de obstáculos
+function CreateObstacles() {
+    timeToObstacle -= deltaTime;
+    if(timeToObstacle <= 0) {
+        var obstacleDiv = document.createElement("div");
+        container.appendChild(obstacleDiv);
+        obstacleDiv.classList.add("obstacle-colonel");
+        if(Math.random() > 0.5) obstacleDiv.classList.add("obstacle-kfc");
+        obstacleDiv.posX = container.clientWidth;
+        obstacleDiv.style.left = container.clientWidth + "px";
     
-    nubes.push(nube);
-    tiempoHastaNube = tiempoNubeMin + Math.random() * (tiempoNubeMax-tiempoNubeMin) / gameVel;
+        obstacles.push(obstacleDiv);
+        timeToObstacle = minTimeObstacle + Math.random() * (maxTimeObstacle-minTimeObstacle) / gameVel;
+    }
 }
 
-function MoverObstaculos() {
-    for (var i = obstaculos.length - 1; i >= 0; i--) {
-        if(obstaculos[i].posX < -obstaculos[i].clientWidth) {
-            obstaculos[i].parentNode.removeChild(obstaculos[i]);
-            obstaculos.splice(i, 1);
-            GanarPuntos();
+// Controla la creación de nubes
+function CreateClouds() {
+    timeToCLoud -= deltaTime;
+    if(timeToCLoud <= 0) {
+        var cloudDiv = document.createElement("div");
+        container.appendChild(cloudDiv);
+        cloudDiv.classList.add("cloud");
+        cloudDiv.posX = container.clientWidth;
+        cloudDiv.style.left = container.clientWidth+"px";
+        cloudDiv.style.bottom = minCloudY + Math.random() * (maxCloudY-minCloudY) + "px";
+        
+        clouds.push(cloudDiv);
+        timeToCLoud = minTimeCloud + Math.random() * (maxTimeCloud-minTimeCloud) / gameVel;
+    }
+}
+
+
+// Controla el movimiento de los obstáculos
+function MoveObstacles() {
+    for (var i = obstacles.length - 1; i >= 0; i--) {
+        if(obstacles[i].posX < -obstacles[i].clientWidth) {
+            obstacles[i].parentNode.removeChild(obstacles[i]);
+            obstacles.splice(i, 1);
+            WinPoints();
         }else{
-            obstaculos[i].posX -= CalcularDesplazamiento();
-            obstaculos[i].style.left = obstaculos[i].posX+"px";
+            obstacles[i].posX -= CalcDisplacement();
+            obstacles[i].style.left = obstacles[i].posX + "px";
         }
     }
 }
 
-function MoverNubes() {
-    for (var i = nubes.length - 1; i >= 0; i--) {
-        if(nubes[i].posX < -nubes[i].clientWidth) {
-            nubes[i].parentNode.removeChild(nubes[i]);
-            nubes.splice(i, 1);
+// Controla el movimiento de las nubes
+function MoveClouds() {
+    for (var i = clouds.length - 1; i >= 0; i--) {
+        if(clouds[i].posX < -clouds[i].clientWidth) {
+            clouds[i].parentNode.removeChild(clouds[i]);
+            clouds.splice(i, 1);
         }else{
-            nubes[i].posX -= CalcularDesplazamiento() * velNube;
-            nubes[i].style.left = nubes[i].posX+"px";
+            clouds[i].posX -= CalcDisplacement() * cloudVel;
+            clouds[i].style.left = clouds[i].posX + "px";
         }
     }
 }
 
-function GanarPuntos() {
+// Controla 
+function WinPoints() {
     score++;
-    textoScore.innerText = score;
+    scoreText.innerText = `Puntuación: ${score}`;
     if(score == 10){
         gameVel = 1.5;
-        contenedor.classList.add("mediodia");
+        container.classList.add("midday");
     }else if(score == 20) {
         gameVel = 2;
-        contenedor.classList.add("tarde");
+        container.classList.add("afternoon");
     } else if(score == 30) {
         gameVel = 3;
-        contenedor.classList.add("noche");
+        container.classList.add("night");
     }
     floor.style.animationDuration = (3/gameVel)+"s";
 }
 
+// Controla el bloqueo de la pantalla al finalizar del juego
 function GameOver() {
-    Estrellarse();
+    Crash();
     gameOver.style.display = "block";
 }
 
-function DetectarColision() {
-    for (var i = 0; i < obstaculos.length; i++) {
-        if(obstaculos[i].posX > chickenPosX + chicken.clientWidth) {
-            //EVADE
-            break; //al estar en orden, no puede chocar con más
-        }else{
-            if(IsCollision(chicken, obstaculos[i], 10, 30, 15, 20)) {
+// Verifica si se producen colisiones
+function DetectCollision() {
+    for (var i = 0; i < obstacles.length; i++) {
+        if(obstacles[i].posX > chickenPosX + chicken.clientWidth) { //  Comprueba si el obstáculo está más adelante en el eje X que el extremo derecho del personaje 
+            // Ha evitado el obstaculo
+            break;
+        } else {
+            if(IsCollision(chicken, obstacles[i], 10, 30, 15, 20)) {
                 GameOver();
             }
         }
     }
 }
 
-function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft) {
-    var aRect = a.getBoundingClientRect();
-    var bRect = b.getBoundingClientRect();
+// Establece los parámetros necesario para saber lo que es una colisión
+function IsCollision(character, hindrance, paddingTop, paddingRight, paddingBottom, paddingLeft) {
+    var characterRect = character.getBoundingClientRect(); // Obtiene los rectángulos delimitadores (bounding rectangles) del personaje y el obstaculo (hindrance)
+    var hindranceRect = hindrance.getBoundingClientRect();
 
     return !(
-        ((aRect.top + aRect.height - paddingBottom) < (bRect.top)) ||
-        (aRect.top + paddingTop > (bRect.top + bRect.height)) ||
-        ((aRect.left + aRect.width - paddingRight) < bRect.left) ||
-        (aRect.left + paddingLeft > (bRect.left + bRect.width))
+        ((characterRect.top + characterRect.height - paddingBottom) < (hindranceRect.top)) ||
+        (characterRect.top + paddingTop > (hindranceRect.top + hindranceRect.height)) ||
+        ((characterRect.left + characterRect.width - paddingRight) < hindranceRect.left) ||
+        (characterRect.left + paddingLeft > (hindranceRect.left + hindranceRect.width))
     );
 }
+
