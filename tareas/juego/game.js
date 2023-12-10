@@ -205,13 +205,13 @@ function WinPoints() {
     score++;
     scoreText.innerText = `Puntuación: ${score}`;
     if(score == 10){
-        gameVel = 1.5;
+        gameVel = 1.25;
         container.classList.add("midday");
     }else if(score == 20) {
-        gameVel = 2;
+        gameVel = 1.5;
         container.classList.add("afternoon");
     } else if(score == 30) {
-        gameVel = 3;
+        gameVel = 2;
         container.classList.add("night");
     }
     floor.style.animationDuration = (3/gameVel)+"s";
